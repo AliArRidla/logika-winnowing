@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use Illuminate\Support\Facades\Route;
+use Smalot\PdfParser\Parser;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [AppController::class,'index']);
+Route::get('/', [AppController::class,'textGet']);
+Route::post('/', [AppController::class,'text']);
+Route::get('/pdf', [AppController::class,'index']);
+Route::post('/pdf', [AppController::class,'pdf']);
+
