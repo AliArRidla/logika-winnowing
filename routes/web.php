@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\CompareTextController;
+use App\Http\Controllers\CompareFilePDFController;
 use Illuminate\Support\Facades\Route;
 use Smalot\PdfParser\Parser;
 
@@ -21,8 +22,8 @@ Route::get('/', function () {
     return view('winnowing');
 });
 
-
-Route::get('/compare-text', [CompareTextController::class,'index']);
+Route::resource('compare-text', CompareTextController::class);
+Route::resource('compare-pdf', CompareFilePDFController::class);
 
 // Route::get('/', [AppController::class,'index']);
 // Route::get('/', [AppController::class,'textGet']);
