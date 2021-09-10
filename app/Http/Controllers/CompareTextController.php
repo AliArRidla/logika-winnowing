@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CompareText;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class CompareTextController extends Controller
 {
@@ -284,12 +285,13 @@ class winnowing
         // }
 
 
-        private function n_gram($word,$n){ //baru
+        private function n_gram($word, $n)
+        { //baru
                 $n_grams = $n;
                 $ngrams = array();
                 $leg = strlen($word);
-                for ($i=0; $i <= ($leg - $n_grams) ; $i++) { 
-                        $ngrams[$i] = substr($word,$i,$n_grams);
+                for ($i = 0; $i <= ($leg - $n_grams); $i++) {
+                        $ngrams[$i] = substr($word, $i, $n_grams);
                 }
                 return $ngrams;
                 var_dump($ngrams);
@@ -299,18 +301,28 @@ class winnowing
                 $h = 0; // file temp
                 $roll_hash = array(); // variable yang akan menampung data 
                 for ($i = 0; $i < count($ngrams); $i++) {  // perulangan outer menhitung bnyak nya count character ngrams
+
                         for ($j = 0; $j < strlen($ngrams[$i]); $j++) { //pisahkan satu-satu dari setiap karakter
-                        //       untuk kasus bun bisa karena bun hanya di pangkat kan 1 kali atau 1 baris
+                                //       untuk kasus bun bisa karena bun hanya di pangkat kan 1 kali atau 1 baris
                                 $pow = pow($this->prime_number, (strlen($ngrams[$i]) - ($j + 1))); //buatlah sebuah pangkat yang akan dikalikan 
                                 // var_dump($pow); //print pangkat setelah dikalikan
                                 // var_dump($ngrams[$i]);        //print character nya
-                                $h += (ord(substr($ngrams[$i], $j, 1)) * $pow); //hashing asci
+                                $h += (ord(substr($ngrams[$i], $j, 1)) * $pow); //hashing asci                                
+                                var_dump(substr($ngrams[$i], $j, 1));        //print character nya
                                 // var_dump($pow);
-                                var_dump($h);
+                                echo "<b>dikali $pow </b> sama dengan = $h; </br>";
+                                // $h = array();
+                                // $h += $h;
+                                // echo "<b>$h</b></br>";
                         }
+
+                        // for ($k = 0; $k < $i; $k++) {
+                        // $h += $h[$i];
+                        echo "<b>$h</b></br>";
+                        // }
+
                         $roll_hash[$i] = $h;
-                        // var_dump($roll_hash[$i]);
-                        $h = 0;
+                        $h =0;
                 }
                 // var_dump($ngrams);
                 return $roll_hash;
