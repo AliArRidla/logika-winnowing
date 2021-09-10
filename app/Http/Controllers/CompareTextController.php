@@ -215,140 +215,140 @@ class winnowing
                 $this->jaccard_coefficient = $this->jaccard_coefficient($this->arr_fingerprints1, $this->arr_fingerprints2);
         }
 
-        private function n_gram($word, $n)
-        {
-                $ngrams = array();
-                $length = strlen($word);
-                for ($i = 0; $i < $length; $i++) {                        
-                        if ($i > ($n - 2)) {
-                                $ng = '';
-                                for ($j = $n - 1; $j >= 0; $j--) { 
-                                        $ng .= $word[$i - $j];
-                                }
-                                $ngrams[] = $ng;
-                        }
-                }
-
-                return $ngrams;
-        }
-
-        private function char2hash($string)
-        {
-                if (strlen($string) == 1) {
-                        return ord($string);
-                } else {
-                        $hasil = 0;
-                        $panjangKata = strlen($string);
-                        for ($i = 0; $i < $panjangKata; $i++) {
-
-                                // $hasil =+ ord(substr($string,$i,1)) * pow($this->prime_number,$panjangKata-$i);
-
-                                // rumus baru 
-                                // $hasil += ord(substr($string,$i,1));
-                                $hasil = ord($string);
-
-                                // bun
-
-                                // $hasil = pow($hasil, $panjangKata - $i);
-                                // var_dump($hasil);
-                                // for ($j=$panjangKata; $j < $panjangKata ; $j--) { 
-                                //         $hasil = pow($hasil,$this->prime_number-$j);
-                                // }                        
-                                // $pow = pow($this->prime_number,(strlen($ngrams[$i])-($j+1)));
-                                //                         $h = (ord(substr($ngrams[$i],$j,1)) * $pow);
-                                // bun
-                                // 98*(prima*pangkat) + 117 *(prima*pangkat) + 110*(prima*pangkat)
-                                // 
-                        }
-                        return $hasil;
-                }
-        }
-
-        private function rolling_hash($ngram)
-        {
-                $roll_hash = array();
-                foreach ($ngram as $ng) {
-                        $roll_hash[] = $this->char2hash($ng);
-
-                            var_dump($ng);
-                }
-                //     pecah-pecah                         
-                for ($i = 0; $i < strlen($ng); $i++) {
-                        $pow = pow($this->prime_number, strlen($ng) - ($i + 1));
-                        // var_dump($pow);
-                        $hasil[$i] = $roll_hash[$i] * $pow;
-                        // var_dump($hasil);
-                }
-                $hasil = array_sum($hasil);
-                return $roll_hash;
-        }
-
-
-        // private function n_gram($word,$n){ //baru
-        //         $n_grams = $n;
-        //         $ngrams = array();
-        //         $leg = strlen($word);
-        //         for ($i=0; $i <= ($leg - $n_grams) ; $i++) { 
-        //                 $ngrams[$i] = substr($word,$i,$n_grams);
-        //         }
-        //         return $ngrams;
-        //         var_dump($ngrams);
-        // }
-        // private function rolling_hash($ngrams) //baru
+        // private function n_gram($word, $n)
         // {
-        //         $h = 0; // file temp
-        //         $roll_hash = array(); // variable yang akan menampung data 
-        //         for ($i = 0; $i < count($ngrams); $i++) {  // perulangan outer menhitung bnyak nya count character ngrams
-        //                 for ($j = 0; $j < strlen($ngrams[$i]); $j++) { //pisahkan satu-satu dari setiap karakter
-        //                 //       untuk kasus bun bisa karena bun hanya di pangkat kan 1 kali atau 1 baris
-        //                         $pow = pow($this->prime_number, (strlen($ngrams[$i]) - ($j + 1))); //buatlah sebuah pangkat yang akan dikalikan 
-        //                         // var_dump($pow); //print pangkat setelah dikalikan
-        //                         // var_dump($ngrams[$i]);        //print character nya
-        //                         $h += (ord(substr($ngrams[$i], $j, 1)) * $pow); //hashing asci
-        //                         // var_dump($pow);
-        //                         var_dump($h);
+        //         $ngrams = array();
+        //         $length = strlen($word);
+        //         for ($i = 0; $i < $length; $i++) {                        
+        //                 if ($i > ($n - 2)) {
+        //                         $ng = '';
+        //                         for ($j = $n - 1; $j >= 0; $j--) { 
+        //                                 $ng .= $word[$i - $j];
+        //                         }
+        //                         $ngrams[] = $ng;
         //                 }
-        //                 $roll_hash[$i] = $h;
-        //                 // var_dump($roll_hash[$i]);
-        //                 $h = 0;
         //         }
-        //         // var_dump($ngrams);
+
+        //         return $ngrams;
+        // }
+
+        // private function char2hash($string)
+        // {
+        //         if (strlen($string) == 1) {
+        //                 return ord($string);
+        //         } else {
+        //                 $hasil = 0;
+        //                 $panjangKata = strlen($string);
+        //                 for ($i = 0; $i < $panjangKata; $i++) {
+
+        //                         // $hasil =+ ord(substr($string,$i,1)) * pow($this->prime_number,$panjangKata-$i);
+
+        //                         // rumus baru 
+        //                         // $hasil += ord(substr($string,$i,1));
+        //                         $hasil = ord($string);
+
+        //                         // bun
+
+        //                         // $hasil = pow($hasil, $panjangKata - $i);
+        //                         // var_dump($hasil);
+        //                         // for ($j=$panjangKata; $j < $panjangKata ; $j--) { 
+        //                         //         $hasil = pow($hasil,$this->prime_number-$j);
+        //                         // }                        
+        //                         // $pow = pow($this->prime_number,(strlen($ngrams[$i])-($j+1)));
+        //                         //                         $h = (ord(substr($ngrams[$i],$j,1)) * $pow);
+        //                         // bun
+        //                         // 98*(prima*pangkat) + 117 *(prima*pangkat) + 110*(prima*pangkat)
+        //                         // 
+        //                 }
+        //                 return $hasil;
+        //         }
+        // }
+
+        // private function rolling_hash($ngram)
+        // {
+        //         $roll_hash = array();
+        //         foreach ($ngram as $ng) {
+        //                 $roll_hash[] = $this->char2hash($ng);
+
+        //                     var_dump($ng);
+        //         }
+        //         //     pecah-pecah                         
+        //         for ($i = 0; $i < strlen($ng); $i++) {
+        //                 $pow = pow($this->prime_number, strlen($ng) - ($i + 1));
+        //                 // var_dump($pow);
+        //                 $hasil[$i] = $roll_hash[$i] * $pow;
+        //                 // var_dump($hasil);
+        //         }
+        //         $hasil = array_sum($hasil);
         //         return $roll_hash;
         // }
 
 
-        private function windowing($rolling_hash, $n)
-        {
-                $ngram = array();
-                $length = count($rolling_hash);
-                $x = 0;
-                for ($i = 0; $i < $length; $i++) {
-                        if ($i > ($n - 2)) {
-                                $ngram[$x] = array();
-                                $y = 0;
-                                for ($j = $n - 1; $j >= 0; $j--) {
-                                        $ngram[$x][$y] = $rolling_hash[$i - $j];
-                                        $y++;
-                                }
-                                $x++;
-                        }
+        private function n_gram($word,$n){ //baru
+                $n_grams = $n;
+                $ngrams = array();
+                $leg = strlen($word);
+                for ($i=0; $i <= ($leg - $n_grams) ; $i++) { 
+                        $ngrams[$i] = substr($word,$i,$n_grams);
                 }
-                //     echo $x.' '.$y;
-                return $ngram;
+                return $ngrams;
+                var_dump($ngrams);
+        }
+        private function rolling_hash($ngrams) //baru
+        {
+                $h = 0; // file temp
+                $roll_hash = array(); // variable yang akan menampung data 
+                for ($i = 0; $i < count($ngrams); $i++) {  // perulangan outer menhitung bnyak nya count character ngrams
+                        for ($j = 0; $j < strlen($ngrams[$i]); $j++) { //pisahkan satu-satu dari setiap karakter
+                        //       untuk kasus bun bisa karena bun hanya di pangkat kan 1 kali atau 1 baris
+                                $pow = pow($this->prime_number, (strlen($ngrams[$i]) - ($j + 1))); //buatlah sebuah pangkat yang akan dikalikan 
+                                // var_dump($pow); //print pangkat setelah dikalikan
+                                // var_dump($ngrams[$i]);        //print character nya
+                                $h += (ord(substr($ngrams[$i], $j, 1)) * $pow); //hashing asci
+                                // var_dump($pow);
+                                var_dump($h);
+                        }
+                        $roll_hash[$i] = $h;
+                        // var_dump($roll_hash[$i]);
+                        $h = 0;
+                }
+                // var_dump($ngrams);
+                return $roll_hash;
         }
 
-        // private function windowing($roll_hash, $n) //baru
+
+        // private function windowing($rolling_hash, $n)
         // {
-        //         $window = $n;
-        //         $leg = count($roll_hash);
-        //         $windows = array(array());
-        //         for ($i = 0; $i <= ($leg - $window); $i++) {
-        //                 for ($j = 0; $j < $window; $j++) {
-        //                         $windows[$i][$j] = $roll_hash[$j + $i];
+        //         $ngram = array();
+        //         $length = count($rolling_hash);
+        //         $x = 0;
+        //         for ($i = 0; $i < $length; $i++) {
+        //                 if ($i > ($n - 2)) {
+        //                         $ngram[$x] = array();
+        //                         $y = 0;
+        //                         for ($j = $n - 1; $j >= 0; $j--) {
+        //                                 $ngram[$x][$y] = $rolling_hash[$i - $j];
+        //                                 $y++;
+        //                         }
+        //                         $x++;
         //                 }
         //         }
-        //         return $windows;
+        //         //     echo $x.' '.$y;
+        //         return $ngram;
         // }
+
+        private function windowing($roll_hash, $n) //baru
+        {
+                $window = $n;
+                $leg = count($roll_hash);
+                $windows = array(array());
+                for ($i = 0; $i <= ($leg - $window); $i++) {
+                        for ($j = 0; $j < $window; $j++) {
+                                $windows[$i][$j] = $roll_hash[$j + $i];
+                        }
+                }
+                return $windows;
+        }
 
         private function fingerprints($window_table)
         {
