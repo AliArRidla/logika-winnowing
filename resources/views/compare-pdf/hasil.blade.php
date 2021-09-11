@@ -85,7 +85,7 @@
         <section class="bg-dark py-5 border-bottom">
             <div class="container px-5 my-4">
                 <div class="text-center mb-5 text-white">
-                    <h2 class="fw-bolder ">Compare Text</h2>
+                    <h2 class="fw-bolder ">Compare PDF</h2>
                     <p class="lead mb-0">Dari hasil inputan yang telah dimasukkan tadi</p>
                 </div>
                 <div class="row gx-5 justify-content-center">

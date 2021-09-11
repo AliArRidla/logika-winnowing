@@ -322,7 +322,7 @@ class winnowing
                         // }
 
                         $roll_hash[$i] = $h;
-                        $h =0;
+                        // $h =0;
                 }
                 // var_dump($ngrams);
                 return $roll_hash;
