@@ -116,9 +116,9 @@ class winnowing
         private $word2 = '';
 
         //input properties
-        private $prime_number = 3;
-        private $n_gram_value = 2;
-        private $n_window_value = 4;
+        // private $prime_number = 3;
+        // private $n_gram_value = 2;
+        // private $n_window_value = 4;
 
         //output properties
         private $arr_n_gram1;
@@ -216,75 +216,6 @@ class winnowing
                 $this->jaccard_coefficient = $this->jaccard_coefficient($this->arr_fingerprints1, $this->arr_fingerprints2);
         }
 
-        // private function n_gram($word, $n)
-        // {
-        //         $ngrams = array();
-        //         $length = strlen($word);
-        //         for ($i = 0; $i < $length; $i++) {                        
-        //                 if ($i > ($n - 2)) {
-        //                         $ng = '';
-        //                         for ($j = $n - 1; $j >= 0; $j--) { 
-        //                                 $ng .= $word[$i - $j];
-        //                         }
-        //                         $ngrams[] = $ng;
-        //                 }
-        //         }
-
-        //         return $ngrams;
-        // }
-
-        // private function char2hash($string)
-        // {
-        //         if (strlen($string) == 1) {
-        //                 return ord($string);
-        //         } else {
-        //                 $hasil = 0;
-        //                 $panjangKata = strlen($string);
-        //                 for ($i = 0; $i < $panjangKata; $i++) {
-
-        //                         // $hasil =+ ord(substr($string,$i,1)) * pow($this->prime_number,$panjangKata-$i);
-
-        //                         // rumus baru 
-        //                         // $hasil += ord(substr($string,$i,1));
-        //                         $hasil = ord($string);
-
-        //                         // bun
-
-        //                         // $hasil = pow($hasil, $panjangKata - $i);
-        //                         // var_dump($hasil);
-        //                         // for ($j=$panjangKata; $j < $panjangKata ; $j--) { 
-        //                         //         $hasil = pow($hasil,$this->prime_number-$j);
-        //                         // }                        
-        //                         // $pow = pow($this->prime_number,(strlen($ngrams[$i])-($j+1)));
-        //                         //                         $h = (ord(substr($ngrams[$i],$j,1)) * $pow);
-        //                         // bun
-        //                         // 98*(prima*pangkat) + 117 *(prima*pangkat) + 110*(prima*pangkat)
-        //                         // 
-        //                 }
-        //                 return $hasil;
-        //         }
-        // }
-
-        // private function rolling_hash($ngram)
-        // {
-        //         $roll_hash = array();
-        //         foreach ($ngram as $ng) {
-        //                 $roll_hash[] = $this->char2hash($ng);
-
-        //                     var_dump($ng);
-        //         }
-        //         //     pecah-pecah                         
-        //         for ($i = 0; $i < strlen($ng); $i++) {
-        //                 $pow = pow($this->prime_number, strlen($ng) - ($i + 1));
-        //                 // var_dump($pow);
-        //                 $hasil[$i] = $roll_hash[$i] * $pow;
-        //                 // var_dump($hasil);
-        //         }
-        //         $hasil = array_sum($hasil);
-        //         return $roll_hash;
-        // }
-
-
         private function n_gram($word, $n)
         { //baru
                 $n_grams = $n;
@@ -294,7 +225,7 @@ class winnowing
                         $ngrams[$i] = substr($word, $i, $n_grams);
                 }
                 return $ngrams;
-                var_dump($ngrams);
+                // var_dump($ngrams);
         }
         private function rolling_hash($ngrams) //baru
         {
@@ -308,9 +239,9 @@ class winnowing
                                 // var_dump($pow); //print pangkat setelah dikalikan
                                 // var_dump($ngrams[$i]);        //print character nya
                                 $h += (ord(substr($ngrams[$i], $j, 1)) * $pow); //hashing asci                                
-                                var_dump(substr($ngrams[$i], $j, 1));        //print character nya
+                                // var_dump(substr($ngrams[$i], $j, 1));        //print character nya
                                 // var_dump($pow);
-                                echo "<b>dikali $pow </b> sama dengan = $h; </br>";
+                                // echo "<b>dikali $pow </b> sama dengan = $h; </br>";
                                 // $h = array();
                                 // $h += $h;
                                 // echo "<b>$h</b></br>";
@@ -318,7 +249,7 @@ class winnowing
 
                         // for ($k = 0; $k < $i; $k++) {
                         // $h += $h[$i];
-                        echo "<b>$h</b></br>";
+                        // echo "<b>$h</b></br>";
                         // }
 
                         $roll_hash[$i] = $h;
@@ -328,26 +259,6 @@ class winnowing
                 return $roll_hash;
         }
 
-
-        // private function windowing($rolling_hash, $n)
-        // {
-        //         $ngram = array();
-        //         $length = count($rolling_hash);
-        //         $x = 0;
-        //         for ($i = 0; $i < $length; $i++) {
-        //                 if ($i > ($n - 2)) {
-        //                         $ngram[$x] = array();
-        //                         $y = 0;
-        //                         for ($j = $n - 1; $j >= 0; $j--) {
-        //                                 $ngram[$x][$y] = $rolling_hash[$i - $j];
-        //                                 $y++;
-        //                         }
-        //                         $x++;
-        //                 }
-        //         }
-        //         //     echo $x.' '.$y;
-        //         return $ngram;
-        // }
 
         private function windowing($roll_hash, $n) //baru
         {
@@ -376,17 +287,6 @@ class winnowing
                 return $fingers;
         }
 
-        // private function fingerprints($windows) //baru
-        // {
-        //         $x = 0;
-        //         $fingers = array();
-        //         for ($i=0; $i < count($windows) ; $i++) { 
-        //                 $min = $windows[$i];
-        //                 if(!in_array($min,$fingers))
-        //                         $fingers[$x++] = $min;
-        //         }
-        //         return $fingers;
-        // }
 
         private function jaccard_coefficient($fingerprint1, $fingerprint2)
         {
@@ -403,3 +303,5 @@ class winnowing
                 return $coefficient;
         }
 }
+
+

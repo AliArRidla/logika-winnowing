@@ -52,7 +52,7 @@ class CompareFilePDFController extends Controller
         $window = $request->input('window');
         $prima = $request->input('prima');
 
-        var_dump($n,$window,$prima);
+        // var_dump($n,$window,$prima);
 
         $w = new winnowing($text, $text2);
         $w->SetPrimeNumber($prima);
@@ -264,7 +264,7 @@ class winnowing {
             foreach($ngram as $ng){
                     $roll_hash[] = $this->char2hash($ng);
             }
-            var_dump($roll_hash);
+        //     var_dump($roll_hash);
             return $roll_hash;
     }
 
@@ -314,3 +314,7 @@ class winnowing {
             return $coefficient;
     }
 }
+
+
+        
+        
