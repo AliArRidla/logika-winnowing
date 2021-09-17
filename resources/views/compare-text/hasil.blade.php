@@ -291,7 +291,7 @@
                                     <li class="mb-2">
                                         <i class="bi bi-x text-primary"></i>
                                         <label for="">Koefisien Jaccard = (Intersection / (Union-Intersection)) * 100 : </label>
-                                        <strong>({{ $result['countIntersectFingers'] }}/{{$result['countUnionFingers']}})*100 = {{ $result['percent']}}%</strong>                                        
+                                        <strong>({{ $result['countIntersectFingers'] }}/{{$result['countUnionFingers'] - $result['countIntersectFingers']}})*100 = {{ $result['percent']}}%</strong>                                        
                                     </li>
         
                                 </ul>

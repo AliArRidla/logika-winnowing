@@ -25,7 +25,7 @@ class CompareTextController extends Controller
                 $kalimat2 = $request->input('text-2');
 
                 $n = $request->input('ngram') ? (int)$request->input('ngram') : 5;
-                $window = $request->input('window') ? (int)$request->input('ngram') : 4;
+                $window = $request->input('window') ? (int)$request->input('window') : 4;
                 $prima = (int)$request->input('prima');
 
                 $w = new winnowing($kalimat, $kalimat2);
@@ -217,60 +217,71 @@ class winnowing
         }
 
         private function n_gram($word, $n)
-        { //baru
-                $n_grams = $n;
+        { //baru                
                 $ngrams = array();
-                $leg = strlen($word);
-                for ($i = 0; $i <= ($leg - $n_grams); $i++) {
-                        $ngrams[$i] = substr($word, $i, $n_grams);
-                }
-                return $ngrams;
-                // var_dump($ngrams);
-        }
-        private function rolling_hash($ngrams) //baru
-        {
-                $h = 0; // file temp
-                $roll_hash = array(); // variable yang akan menampung data 
-                for ($i = 0; $i < count($ngrams); $i++) {  // perulangan outer menhitung bnyak nya count character ngrams
-
-                        for ($j = 0; $j < strlen($ngrams[$i]); $j++) { //pisahkan satu-satu dari setiap karakter
-                                //       untuk kasus bun bisa karena bun hanya di pangkat kan 1 kali atau 1 baris
-                                $pow = pow($this->prime_number, (strlen($ngrams[$i]) - ($j + 1))); //buatlah sebuah pangkat yang akan dikalikan 
-                                // var_dump($pow); //print pangkat setelah dikalikan
-                                // var_dump($ngrams[$i]);        //print character nya
-                                $h += (ord(substr($ngrams[$i], $j, 1)) * $pow); //hashing asci                                
-                                // var_dump(substr($ngrams[$i], $j, 1));        //print character nya
-                                // var_dump($pow);
-                                // echo "<b>dikali $pow </b> sama dengan = $h; </br>";
-                                // $h = array();
-                                // $h += $h;
-                                // echo "<b>$h</b></br>";
+                $panjang = strlen($word);
+                for ($i = 0; $i < $panjang; $i++) {
+                        if ($i > ($n - 2)) {
+                                $ng = '';
+                                for ($j = $n-1; $j >= 0; $j--) {
+                                        $ng .= $word[$i - $j];
+                                }
+                                $ngrams[] = $ng;
                         }
-
-                        // for ($k = 0; $k < $i; $k++) {
-                        // $h += $h[$i];
-                        // echo "<b>$h</b></br>";
-                        // }
-
-                        $roll_hash[$i] = $h;
-                        // $h =0;
                 }
                 // var_dump($ngrams);
+                return $ngrams;
+        }
+
+
+        private function char2hash($string)
+        {
+                if (strlen($string) == 1) {
+                        return ord($string);
+                } else {
+                        $result = 0;
+                        $length = strlen($string);
+                        for ($i = 0; $i < $length; $i++) {
+                                $result += ord(substr($string, $i, 1)) * pow($this->prime_number, $length - $i);
+                                // var_dump($this->prime_number);
+                                // var_dump($i);
+                                // var_dump($length-$i);
+                                // var_dump(pow($this->prime_number, $length - $i));
+                        }                        
+                        return $result;
+                }
+        }
+
+        private function rolling_hash($ngram) //baru
+        {
+                $roll_hash = array();
+                foreach ($ngram as $ng) {
+                        $roll_hash[] = $this->char2hash($ng);
+                }
                 return $roll_hash;
         }
 
 
-        private function windowing($roll_hash, $n) //baru
+        private function windowing($rolling_hash, $n) //mengikuti dari ngram
         {
-                $window = $n;
-                $leg = count($roll_hash);
-                $windows = array(array());
-                for ($i = 0; $i <= ($leg - $window); $i++) {
-                        for ($j = 0; $j < $window; $j++) {
-                                $windows[$i][$j] = $roll_hash[$j + $i];
+                // var_dump($rolling_hash);
+                // var_dump($n);
+                $ngram = array(); //variable baru ngram
+                $length = count($rolling_hash); //panjang dari rolling hash
+                $x = 0; // variable kosong
+                for ($i = 0; $i < $length; $i++) {
+                        if ($i > ($n - 2)) { //jika 0 > 1-2(-1)
+                                $ngram[$x] = array(); // isi dari array ngram di indeks 0
+                                $y = 0; //variable kosong
+                                for ($j = $n - 1; $j >= 0; $j--) { //-1-1(-2) jika -2>=0 maka -2 dikurangi 1
+                                        $ngram[$x][$y] = $rolling_hash[$i - $j];
+                                        $y++;
+                                }
+                                $x++;
                         }
                 }
-                return $windows;
+                
+                return $ngram;
         }
 
         private function fingerprints($window_table)
@@ -290,18 +301,16 @@ class winnowing
 
         private function jaccard_coefficient($fingerprint1, $fingerprint2)
         {
-                ini_set('memory_limit', '-1');
+                // ini_set('memory_limit', '-1');
                 $arr_intersect = array_intersect($fingerprint1, $fingerprint2);
                 $arr_union = array_merge($fingerprint1, $fingerprint2);
 
                 $count_intersect_fingers = count($arr_intersect);
                 $count_union_fingers = count($arr_union);
 
-                $coefficient = $count_intersect_fingers / $count_union_fingers;
+                $coefficient = $count_intersect_fingers / ($count_union_fingers - $count_intersect_fingers);
                 //     var_dump($count_union_fingers);
 
                 return $coefficient;
         }
 }
-
-
