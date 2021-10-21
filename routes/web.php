@@ -22,8 +22,13 @@ Route::get('/', function () {
     return view('winnowing');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 Route::resource('compare-text', CompareTextController::class);
 Route::resource('compare-pdf', CompareFilePDFController::class);
+
 
 // Route::get('/', [AppController::class,'index']);
 // Route::get('/', [AppController::class,'textGet']);
