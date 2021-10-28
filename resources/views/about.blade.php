@@ -46,26 +46,11 @@
                 </div>
                 <div class="col" style="padding-top: 70px">
                     <table>
-                        <tr>
-                            <td>Nama</td>
-                            <td></td>
-                            <td>:</td>
-                            <td></td>
-                            <td>Gantangsanra Pradipta Putra K.</td>
+                        <tr style>
+                            <td><b>Gantangsanra Pradipta Putra K.</ b></td>
                         </tr>
                         <tr>
-                            <td>NIM</td>
-                            <td></td>
-                            <td>:</td>
-                            <td></td>
-                            <td>1931710040</td>
-                        </tr>
-                        <tr>
-                            <td>Jurusan</td>
-                            <td></td>
-                            <td>:</td>
-                            <td></td>
-                            <td>Teknologi Informasi</td>
+                            <td>Malang, Indonesia</td>
                         </tr>
                     </table>
                 </div>
@@ -76,25 +61,10 @@
                     <div class="col" style="padding-top: 70px">
                         <table>
                             <tr>
-                                <td>Nama</td>
-                                <td></td>
-                                <td>:</td>
-                                <td></td>
-                                <td>Ali Ar Ridla</td>
+                                <td><b>Ali Ar Ridla</b></td>
                             </tr>
                             <tr>
-                                <td>NIM</td>
-                                <td></td>
-                                <td>:</td>
-                                <td></td>
-                                <td>1931710069</td>
-                            </tr>
-                            <tr>
-                                <td>Jurusan</td>
-                                <td></td>
-                                <td>:</td>
-                                <td></td>
-                                <td>Teknologi Informasi</td>
+                                <td>Malang, Indonesia</td>
                             </tr>
                         </table>
                     </div>
