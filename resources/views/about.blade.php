@@ -33,30 +33,90 @@
             </div>
         </nav>
         <div class="container" style="padding-top: 30px">
-            <h2>About Us</h2>
-            <p style="text-align: justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus maiores voluptate eaque dolorem
+            <h2><b>About</b></h2> <br>
+            <p style="text-align: justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
+                maiores voluptate eaque dolorem
                 maxime illum molestias suscipit eius sapiente, adipisci optio quidem, quos placeat laudantium
                 accusantium temporibus alias possimus corporis? Lorem ipsum dolor sit amet, consectetur adipisicing
                 elit. Temporibus architecto voluptates expedita ipsam ea ipsum in. Perferendis, doloremque, non cumque
                 incidunt, cum vero veritatis deleniti amet aliquid nemo praesentium dolores?</p>
-        </div>
+            <div class="row" style="padding-top: 70px">
+                <div class="col">
+                    <img src="asset/gue.jpeg" class="foto-gue">
+                </div>
+                <div class="col" style="padding-top: 70px">
+                    <table>
+                        <tr>
+                            <td>Nama</td>
+                            <td></td>
+                            <td>:</td>
+                            <td></td>
+                            <td>Gantangsanra Pradipta Putra K.</td>
+                        </tr>
+                        <tr>
+                            <td>NIM</td>
+                            <td></td>
+                            <td>:</td>
+                            <td></td>
+                            <td>1931710040</td>
+                        </tr>
+                        <tr>
+                            <td>Jurusan</td>
+                            <td></td>
+                            <td>:</td>
+                            <td></td>
+                            <td>Teknologi Informasi</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row" style="padding-top: 70px">
+                    <div class="col">
+                        <img src="asset/gue2.jpg" class="foto-gue">
+                    </div>
+                    <div class="col" style="padding-top: 70px">
+                        <table>
+                            <tr>
+                                <td>Nama</td>
+                                <td></td>
+                                <td>:</td>
+                                <td></td>
+                                <td>Ali Ar Ridla</td>
+                            </tr>
+                            <tr>
+                                <td>NIM</td>
+                                <td></td>
+                                <td>:</td>
+                                <td></td>
+                                <td>1931710069</td>
+                            </tr>
+                            <tr>
+                                <td>Jurusan</td>
+                                <td></td>
+                                <td>:</td>
+                                <td></td>
+                                <td>Teknologi Informasi</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
 
-        {{-- <footer class="py-5 bg-dark">
+            {{-- <footer class="py-5 bg-dark">
             <div class="container px-5">
                 <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
             </div>
         </footer> --}}
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="dist/js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </div>
+            <!-- Bootstrap core JS-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Core theme JS-->
+            <script src="dist/js/scripts.js"></script>
+            <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+            <!-- * *                               SB Forms JS                               * *-->
+            <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+            <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+            <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        </div>
 </body>
 
 </html>
