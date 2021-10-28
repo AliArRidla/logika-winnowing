@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\CompareEssayController;
 use App\Http\Controllers\CompareTextController;
 use App\Http\Controllers\CompareFilePDFController;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+
 Route::resource('compare-text', CompareTextController::class);
 Route::resource('compare-pdf', CompareFilePDFController::class);
+Route::resource('compare-essay', CompareEssayController::class);
 
 
 // Route::get('/', [AppController::class,'index']);
