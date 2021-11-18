@@ -10,4 +10,8 @@ class CompareEssayController extends Controller
     {
         return view('compare-essay.index');
     }
+
+    public function create(){
+        return view('compare-essay.create-soal');
+    }
 }

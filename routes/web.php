@@ -4,6 +4,8 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\CompareEssayController;
 use App\Http\Controllers\CompareTextController;
 use App\Http\Controllers\CompareFilePDFController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CustomAuthController;
 use Illuminate\Support\Facades\Route;
 use Smalot\PdfParser\Parser;
 
@@ -23,19 +25,15 @@ Route::get('/', function () {
     return view('winnowing');
 });
 
-Route::get('/about', function () {
-    return view('about');
-});
-
-
+// Route::get('/about', function () {
+//     return view('about');
+// });
+Auth::routes();
+Route::resource('home', HomeController::class);
 Route::resource('compare-text', CompareTextController::class);
 Route::resource('compare-pdf', CompareFilePDFController::class);
 Route::resource('compare-essay', CompareEssayController::class);
 
 
-// Route::get('/', [AppController::class,'index']);
-// Route::get('/', [AppController::class,'textGet']);
-// Route::post('/', [AppController::class,'text']);
-// Route::get('/pdf', [AppController::class,'index']);
-// Route::post('/pdf', [AppController::class,'pdf']);
+
 
