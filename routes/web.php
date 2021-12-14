@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\AppController;
+// use App\Http\Controllers\AppController;
 use App\Http\Controllers\CompareEssayController;
 use App\Http\Controllers\CompareTextController;
 use App\Http\Controllers\CompareFilePDFController;
+use App\Http\Controllers\TambahUlanganController;
+use App\Http\Controllers\KerjakanUlanganController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CustomAuthController;
-use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\CustomAuthController;
+// use Illuminate\Support\Facades\Route;
 use Smalot\PdfParser\Parser;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,10 @@ Route::resource('home', HomeController::class);
 Route::resource('compare-text', CompareTextController::class);
 Route::resource('compare-pdf', CompareFilePDFController::class);
 Route::resource('compare-essay', CompareEssayController::class);
+
+Route::resource('tambah-soal', TambahUlanganController::class);
+Route::resource('kerjakan-soal', KerjakanUlanganController::class);
+// Route::post('tambah-soal', TambahUlanganController::class, 'store');
 
 
 

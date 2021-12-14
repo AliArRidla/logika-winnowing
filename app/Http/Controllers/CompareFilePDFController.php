@@ -138,7 +138,7 @@ class CompareFilePDFController extends Controller
 }
 
 
-class winnowing {
+class bandingkan {
     private $word1 = '';
     private $word2 = '';
 
