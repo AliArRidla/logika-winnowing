@@ -32,6 +32,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\CompareFilePDF' => $baseDir . '/app/Models/CompareFilePDF.php',
     'App\\Models\\CompareText' => $baseDir . '/app/Models/CompareText.php',
+    'App\\Models\\KerjakanUlangan' => $baseDir . '/app/Models/KerjakanUlangan.php',
     'App\\Models\\Ulangan' => $baseDir . '/app/Models/Ulangan.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

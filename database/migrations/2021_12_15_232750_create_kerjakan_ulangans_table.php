@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUlangansTable extends Migration
+class CreateKerjakanUlangansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateUlangansTable extends Migration
      */
     public function up()
     {
-        Schema::create('ulangans', function (Blueprint $table) {
+        Schema::create('kerjakan_ulangans', function (Blueprint $table) {
             $table->id();
             $table->string('idSoal');
-            $table->string('soal');
-            $table->string('jawabanGuru');
-            $table->string('similarity')->nullable();
+            $table->longText('jawabanSiswa');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateUlangansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ulangans');
+        Schema::dropIfExists('kerjakan_ulangans');
     }
 }

@@ -55,25 +55,11 @@ class TambahUlanganController extends Controller
             'soal' => 'required',
             'jawabanGuru' => 'required'
         ]);
-        // $jumlahSoal = $request->soal;
-        // echo $jumlahSoal;
-        // for($i = 0; $i < $request->jumlahSoal; $i++){
-        //     $ulangan = Ulangan::create([
-        //         'idSoal' => $request->idSoal, 
-        //         'soal' => $request->soal, 
-        //         'jawabanGuru' => $request->jawabanGuru, 
-        //     ]);
-        //     $this->ulangan[$i] = '';     
-        // } 
-
-        // echo 'Id Soal:' . $request->idSoal . '<br>';
-        // echo 'Jumlah Soal:' . $request->jumlahSoal ;    
-        
     
 
         for ($i=0; $i < $request->jumlahSoal; $i++) { 
             $ulangan[$i] = Ulangan::create([
-                        'idSoal' => $request->idSoal, 
+                        'idSoal' => $request->idSoal[$i], 
                         'soal' => $request->soal[$i], 
                         'jawabanGuru' => $request->jawabanGuru[$i], 
                     ]);         
@@ -85,8 +71,9 @@ class TambahUlanganController extends Controller
         if ($ulangan) {
             return redirect()
                 ->route('compare-essay.index')
-                ->with([
+                ->with([                    
                     'success' => 'Soal berhasil di tambahkan',
+                    'ulangan' => $ulangan,
                     // compact($ulangans)
                 ]);
         } else {

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Ulangan;
+use App\Models\KerjakanUlangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KerjakanUlanganController extends Controller
 {
@@ -33,8 +35,31 @@ class KerjakanUlanganController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {        
+        for($i = 0; $i < count($request->jawabanSiswa); $i++){
+            // $data = substr($request->idSoal[$i],strpos($request->idSoal[$i],"_")+1);                
+            $jawabanUlangans[$i] = DB::table('kerjakan_ulangans')->insert([                
+                'idSoal' => $request->idSoal[$i],                 
+                'jawabanSiswa' => $request->jawabanSiswa[$i], 
+            ]);
+            $jawabanUlangans[$i] = '';              
+        }      
+
+        if ($jawabanUlangans) {
+            return redirect()
+                ->route('compare-essay.index')
+                ->with([
+                    'success' => 'Jawaban berhasil di tambahkan',
+                    // compact($ulangans)
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem occurred, please try again'
+                ]);
+        }
     }
 
     /**
@@ -46,7 +71,7 @@ class KerjakanUlanganController extends Controller
     public function show($id)
     {        
         $keyword = request('idSoal');       
-        $ulangans = Ulangan::where('idSoal', 'like' , '%' . request('idSoal'). '%');
+        $ulangans = Ulangan::where('idSoal', 'like' , '%' . request('idSoal'). '%')->get();
         
         // if(request('idSoal')){
         //     $ulangans->where('idSoal', 'like' , '%' . request('idSoal'). '%');
@@ -55,7 +80,7 @@ class KerjakanUlanganController extends Controller
 
         // }
 
-        if(!empty($ulangans)){
+        if(!empty($ulangans)){            
             return view('compare-essay.kerjakan-soal',['ulangans' => $ulangans]);
         }else{
             dd($keyword);

@@ -54,7 +54,7 @@ class CompareFilePDFController extends Controller
 
         // var_dump($n,$window,$prima);
 
-        $w = new winnowing($text, $text2);
+        $w = new bandingkan($text, $text2);
         $w->SetPrimeNumber($prima);
         $w->SetNGramValue($n);
         $w->SetNWindowValue($window);

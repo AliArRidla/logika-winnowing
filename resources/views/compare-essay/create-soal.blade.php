@@ -1,4 +1,4 @@
-@extends('layouts.master');
+@extends('layouts.master')
 @section('content')
 <div class="container"> 
     <section class="py-5 border-bottom">
@@ -11,9 +11,11 @@
                 <form method="POST" action="{{route('tambah-soal.store')}}" >
                     @csrf
                     <input type="text" name="jumlahSoal" value="{{$jumlahSoals['jumlahSoal']}}" hidden>
-                    <input type="text" name="idSoal" value="{{$jumlahSoals['idSoal']}}" hidden>
                     <div class="col-lg-12">
                         <div class="card mb-4">     
+                            {{-- @for($i = 0; $i < $jumlahSoals['jumlahSoal']; $i++)
+                            
+                            @endfor --}}
                             
                             @for ($i = 1; $i < $jumlahSoals['jumlahSoal']+1; $i++)                                                                                        
                                 <div class="ms-4 row ">
@@ -24,10 +26,11 @@
                                     </div>
                                     <div class="col-lg-8">
                                         {{-- {{ $jumlahSoal }} --}}                                    
-                                            <label for="soal" class="mt-3">Soal Essay</label>
+                                            <input type="text" name="idSoal[]" value="{{strval($i).$jumlahSoals['idSoal']}}" hidden>                                                                 
+                                            <label for="soal" class="mt-3">Soal Essay </label>
                                             <input type="text" class="form-control " id="soal" name="soal[]" placeholder="Masukkan soal nya " required>
                                             <label for="soal" class="mt-3">Jawaban Essay</label>
-                                            <input type="text" class="form-control mb-3" id="jawabanGuru" name="jawabanGuru[]" placeholder="Masukkan Jawaban nya " required>                                                                            
+                                            <input type="text" class="form-control mb-3" id="jawabanGuru" name="jawabanGuru[]" placeholder="Masukkan Jawaban nya " required>                                                       
                                     </div>
                                 </div>
                                 <hr width="70%" class="mx-auto">

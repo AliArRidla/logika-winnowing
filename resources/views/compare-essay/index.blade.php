@@ -96,7 +96,7 @@
          
 @section('content')
 
-    @if ($ulangans != null && session('success') )
+    @if ($ulangans)
     <section class="pt-4 mt-5">
         <div class="container px-lg-5">
             <div class="row gx-lg-5 mb-5">

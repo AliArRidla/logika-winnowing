@@ -555,6 +555,7 @@ class ComposerStaticInitb6b0e8f50901980883e39d933a5e710a
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\CompareFilePDF' => __DIR__ . '/../..' . '/app/Models/CompareFilePDF.php',
         'App\\Models\\CompareText' => __DIR__ . '/../..' . '/app/Models/CompareText.php',
+        'App\\Models\\KerjakanUlangan' => __DIR__ . '/../..' . '/app/Models/KerjakanUlangan.php',
         'App\\Models\\Ulangan' => __DIR__ . '/../..' . '/app/Models/Ulangan.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
